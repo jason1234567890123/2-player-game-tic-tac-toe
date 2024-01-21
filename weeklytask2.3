@@ -1,0 +1,43 @@
+def subtractive_division(dividend, divisor):
+    """
+    Divides the dividend by the divisor using repeated subtraction.
+    Returns the quotient and the remainder.
+    """
+    # Error handling for division by zero
+    if divisor == 0:
+        raise ValueError("Cannot divide by zero")
+
+    # Initialize quotient and remainder
+    quotient = 0
+    remainder = dividend
+
+    # Subtract divisor from remainder until remainder is smaller than divisor
+    while remainder >= divisor:
+        remainder -= divisor
+        quotient += 1
+
+    return quotient, remainder
+
+def main():
+    """
+    Main function to interact with the user.
+    """
+    print("Welcome to Subtractive Division Calculator")
+    try:
+        # Gather user inputs
+        dividend = int(input("Enter the dividend (an integer): "))
+        divisor = int(input("Enter the divisor (an integer): "))
+
+        # Perform the subtractive division
+        quotient, remainder = subtractive_division(dividend, divisor)
+
+        # Display the results
+        print(f"Result of dividing {dividend} by {divisor}:")
+        print(f"Quotient: {quotient}, Remainder: {remainder}")
+    except ValueError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
