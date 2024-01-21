@@ -1,0 +1,36 @@
+def word_to_pig_latin(word):
+    """
+    Converts a single English word to Pig Latin.
+    """
+    vowels = 'aeiou'
+    if word[0].lower() in vowels:
+        return word + "yay"
+    else:
+        # Find the index of the first vowel
+        for i, char in enumerate(word):
+            if char.lower() in vowels:
+                return word[i:] + word[:i] + "ay"
+        return word + "ay"  # For words without vowels
+
+def sentence_to_pig_latin(sentence):
+    """
+    Converts a whole sentence into Pig Latin.
+    """
+    words = sentence.split()
+    pig_latin_words = [word_to_pig_latin(word) for word in words]
+    return ' '.join(pig_latin_words)
+
+def main():
+    """
+    Main function to demonstrate the Pig Latin conversion.
+    """
+    print("Welcome to the Pig Latin Converter")
+    user_input = input("Enter a word or a sentence: ")
+
+    if ' ' in user_input:
+        print("Pig Latin Sentence:", sentence_to_pig_latin(user_input))
+    else:
+        print("Pig Latin Word:", word_to_pig_latin(user_input))
+
+if __name__ == "__main__":
+    main()
