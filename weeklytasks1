@@ -1,0 +1,27 @@
+def check_number(input_value):
+    try:
+        # Convert input to a float
+        number = float(input_value)
+        
+        # Check if the number is an integer
+        if number.is_integer():
+            # Convert to int for even/odd check
+            number = int(number)
+            
+            # Check if the number is even or odd
+            if number % 2 == 0:
+                return "even"
+            else:
+                return "odd"
+        else:
+            return "fractional"
+
+    except ValueError:
+        # Handle the case where input is not a number
+        return "not a number"
+
+# Get user input
+input_value = input("Enter a number: ")
+result = check_number(input_value)
+
+print(result)
