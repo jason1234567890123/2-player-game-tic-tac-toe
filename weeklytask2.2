@@ -1,0 +1,32 @@
+def count_letters(text):
+    """
+    Counts the occurrence of each letter in the provided text.
+    Differentiates between uppercase and lowercase.
+    """
+    # Initialize a dictionary to hold the count of each letter
+    letter_counts = {chr(i): 0 for i in range(ord('a'), ord('z') + 1)}
+    letter_counts.update({chr(i): 0 for i in range(ord('A'), ord('Z') + 1)})
+
+    # Iterate over each character in the text
+    for char in text:
+        # Increment the count if the character is a letter
+        if char.isalpha():
+            letter_counts[char] += 1
+
+    return letter_counts
+
+def main():
+    """
+    Main function to get user input and display letter counts.
+    """
+    print("Letter Frequency Counter")
+    user_input = input("Enter a string of text: ")
+    letter_counts = count_letters(user_input)
+
+    # Display the counts
+    for letter, count in sorted(letter_counts.items()):
+        if count > 0:
+            print(f"{letter}: {count}", end=", ")
+
+if __name__ == "__main__":
+    main()
