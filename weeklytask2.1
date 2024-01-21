@@ -1,0 +1,41 @@
+def sum_of_multiples(start, end, multiple):
+    """
+    Calculates the sum of numbers between 'start' and 'end' (inclusive) 
+    that are multiples of 'multiple'.
+    """
+    # Initialize the sum
+    total_sum = 0
+
+    # Adjust start to the nearest multiple if it's not already one
+    if start % multiple != 0:
+        start += multiple - (start % multiple)
+
+    # Iterate over the range and add multiples to the sum
+    for number in range(start, end + 1, multiple):
+        total_sum += number
+
+    return total_sum
+
+def main():
+    """
+    Main function to get user input and display the result.
+    """
+    print("Multiple Sum Calculator")
+    try:
+        # Get user input
+        start, end, multiple = map(int, input("Enter three positive integers (start, end, multiple): ").split(", "))
+
+        # Validate the input
+        if start < 0 or end < 0 or multiple < 1:
+            print("Please enter positive integers only.")
+        elif start > end:
+            print("The start number should be less than or equal to the end number.")
+        else:
+            # Calculate and display the sum
+            result = sum_of_multiples(start, end, multiple)
+            print(f"The sum of multiples of {multiple} between {start} and {end} is: {result}")
+    except ValueError:
+        print("Invalid input. Please enter three integers separated by commas.")
+
+if __name__ == "__main__":
+    main()
