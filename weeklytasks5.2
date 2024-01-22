@@ -1,0 +1,29 @@
+def caesar_cipher(text, shift):
+    """
+    Encrypts the input text using Caesar Cipher with the given shift.
+    """
+    encrypted_text = ""
+
+    for char in text:
+        if char.isalpha():
+            # Determine the alphabet starting point (lowercase or uppercase)
+            start = ord('a') if char.islower() else ord('A')
+
+            # Shift the character and wrap around the alphabet
+            shifted = ord(char) - start
+            shifted = (shifted + shift) % 26
+
+            encrypted_text += chr(start + shifted)
+        else:
+            # Keep non-alphabetic characters as is
+            encrypted_text += char
+
+    return encrypted_text
+
+# Example usage
+input_text = "hello world"
+shift_amount = 7
+output = caesar_cipher(input_text, shift_amount)
+print(f"Input: {input_text}")
+print(f"Shift by: {shift_amount}")
+print(f"Output: {output}")
