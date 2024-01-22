@@ -1,0 +1,43 @@
+import sys
+import argparse
+
+def read_dictionary(dictionary_path):
+    with open(dictionary_path, 'r') as file:
+        return set(word.strip().lower() for word in file.readlines())
+
+def spell_check(text, dictionary):
+    corrected_text = []
+    words = text.split()
+    for word in words:
+        # Check if the word is in the dictionary, correct it if necessary
+        corrected_word = word if word.lower() in dictionary else f"[{word}]"
+        corrected_text.append(corrected_word)
+    return ' '.join(corrected_text)
+
+def main():
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Rudimentary Spell Checker")
+    parser.add_argument("-i", "--input", required=True, help="Input text file")
+    parser.add_argument("-o", "--output", required=True, help="Output text file")
+    parser.add_argument("-d", "--dictionary", required=True, help="Dictionary file")
+    args = parser.parse_args()
+
+    # Read dictionary
+    dictionary = read_dictionary(args.dictionary)
+
+    # Read input text
+    with open(args.input, 'r') as file:
+        input_text = file.read()
+
+    # Spell check
+    corrected_text = spell_check(input_text, dictionary)
+
+    # Write output text
+    with open(args.output, 'w') as file:
+        file.write(corrected_text)
+
+    print(f"Processed {len(input_text.split())} words.")
+    print(f"Corrected text written to {args.output}")
+
+if __name__ == "__main__":
+    main
