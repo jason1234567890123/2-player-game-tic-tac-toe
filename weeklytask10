@@ -1,0 +1,31 @@
+import random
+
+class Dice:
+    def __init__(self, sides=6):
+        self.sides = sides
+
+    def roll(self):
+        return random.randint(1, self.sides)
+
+class DiceRoller:
+    def __init__(self, number_of_dice=1, sides_per_dice=6):
+        self.dice = [Dice(sides_per_dice) for _ in range(number_of_dice)]
+
+    def roll_all_dice(self):
+        return [dice.roll() for dice in self.dice]
+
+    def roll_dice_multiple_times(self, times):
+        return [self.roll_all_dice() for _ in range(times)]
+
+def main():
+    print("Welcome to the Dice Roller Program")
+    sides = int(input("Enter the number of sides for the dice: "))
+    number_of_dice = int(input("Enter the number of dice: "))
+    roll_times = int(input("Enter how many times you want to roll the dice: "))
+
+    dice_roller = DiceRoller(number_of_dice, sides)
+    for i, result in enumerate(dice_roller.roll_dice_multiple_times(roll_times), 1):
+        print(f"Roll {i}: {result}")
+
+if __name__ == "__main__":
+    main()
