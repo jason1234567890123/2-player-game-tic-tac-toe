@@ -1,0 +1,26 @@
+def to_nato(phrase):
+    """
+    Converts a string to its NATO phonetic alphabet equivalent.
+    """
+    nato_alphabet = {
+        'A': 'alfa', 'B': 'bravo', 'C': 'charlie', 'D': 'delta', 'E': 'echo',
+        'F': 'foxtrot', 'G': 'golf', 'H': 'hotel', 'I': 'india', 'J': 'juliett',
+        'K': 'kilo', 'L': 'lima', 'M': 'mike', 'N': 'november', 'O': 'oscar',
+        'P': 'papa', 'Q': 'quebec', 'R': 'romeo', 'S': 'sierra', 'T': 'tango',
+        'U': 'uniform', 'V': 'victor', 'W': 'whiskey', 'X': 'xray', 'Y': 'yankee',
+        'Z': 'zulu'
+    }
+
+    return ' '.join(nato_alphabet[char.upper()] for char in phrase if char.isalpha())
+
+def from_nato(nato_phrase):
+    """
+    Converts a NATO phonetic alphabet string back to its regular alphabetical form.
+    """
+    reverse_nato_alphabet = {v: k for k, v in nato_alphabet.items()}
+    words = nato_phrase.split()
+    return ''.join(reverse_nato_alphabet[word.lower()] for word in words if word.lower() in reverse_nato_alphabet)
+
+# Example usage
+print(to_nato("cat"))         # Output: charlie alfa tango
+print(from_nato("charlie alfa tango"))  # Output: CAT
