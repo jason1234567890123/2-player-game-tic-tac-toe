@@ -1,0 +1,23 @@
+def generate_word_combinations(words):
+    """
+    Generates all possible two-word combinations from a list of words.
+    """
+    combinations = []
+    for i in range(len(words)):
+        for j in range(len(words)):
+            if i != j:
+                combinations.append(f"{words[i]} {words[j]}")
+    return combinations
+
+def main():
+    """
+    Main function to demonstrate word combination generation.
+    """
+    words = ["comfortable", "round", "support", "machinery"]
+    word_combinations = generate_word_combinations(words)
+    print("Two-word combinations:")
+    for combo in word_combinations:
+        print(combo)
+
+if __name__ == "__main__":
+    main()
